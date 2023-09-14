@@ -1,13 +1,10 @@
 import { View, Text, TextInput, Pressable, Image } from "react-native";
-import APIKit from "../../common/helpers/APIKit";
+
+import PressableButton from "../../components/Shared/PressableButton";
+import { Link } from "expo-router";
 
 export default function Login() {
-  const  handleLogin = async () => {
-    return APIKit.customer.auth
-      .login("+8801311223344", "123456789")
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
+  
   return (
     <View className="flex-1 justify-center px-6">
       <View className="flex">
@@ -16,7 +13,9 @@ export default function Login() {
             className="h-10 w-10"
             source={require("../../assets/Logo.png")}
           />
-          <Text className="text-2xl text-teal-700 font-bold">PHARMIK</Text>
+          <Link href="/" className="text-2xl text-teal-700 font-bold">
+            PHARMIK
+          </Link>
         </View>
         <Text className="text-4xl font-bold text-center mb-10">
           Customer Login
@@ -44,14 +43,12 @@ export default function Login() {
             Forgot Password?
           </Text>
         </View>
-        <Pressable
-          onPress={handleLogin}
-          className="bg-teal-700 px-4 py-2 rounded-md mt-6"
-        >
-          <Text className="text-white text-center text-lg font-medium">
-            Sign In
-          </Text>
-        </Pressable>
+        <PressableButton
+          buttonLabel="Sign In"
+          variant="teal"
+          extraClassName="mt-6"
+          onPress={() => console.log("Login to customer")}
+        />
         <View className="mt-10">
           <Text className="text-gray-800 text-sm text-center">
             Don't Have an Account yet?

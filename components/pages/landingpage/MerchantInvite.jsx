@@ -1,4 +1,6 @@
-import { ImageBackground, Pressable, Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
+
+import PressableButton from "../../Shared/PressableButton";
 
 export default function MerchantInvite() {
   const image = {
@@ -20,11 +22,11 @@ export default function MerchantInvite() {
             Empowering suppliers, enhancing pharmaceutical customer experiences
             - Your one-stop shop for all your pharmacy needs.
           </Text>
-          <Pressable className="bg-white px-8 py-4 rounded-md mt-8 w-60 self-center">
-            <Text className="text-center text-lg text-primary font-semibold">
-              Become Merchant
-            </Text>
-          </Pressable>
+          <PressableButton
+            buttonLabel="Become Merchant"
+            extraClassName="w-60 mt-8 bg-white border-0 px-8 py-4"
+            labelClassName="text-primary"
+          />
         </View>
       </ImageBackground>
     </View>
