@@ -1,4 +1,5 @@
 import { ImageBackground, Pressable, Text, View } from "react-native";
+import { router } from "expo-router";
 
 import PressableButton from "../../Shared/PressableButton";
 
@@ -28,6 +29,7 @@ export default function Hero() {
               buttonLabel="Become Merchant"
               extraClassName="w-60 mt-8 bg-white border-0 px-8 py-4"
               labelClassName="text-primary"
+              onPress={() => router.push("/merchant-login")}
             />
           </View>
         </ImageBackground>
