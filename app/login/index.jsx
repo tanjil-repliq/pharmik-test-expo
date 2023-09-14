@@ -1,10 +1,30 @@
-import { View, Text, TextInput, Pressable, Image } from "react-native";
-
-import PressableButton from "../../components/Shared/PressableButton";
+import { Image, Text, View } from "react-native";
 import { Link } from "expo-router";
 
-export default function Login() {
-  
+import { object, string } from "yup";
+import { useFormik } from "formik";
+
+import InputField from "../../components/Shared/InputField";
+import PressableButton from "../../components/Shared/PressableButton";
+
+const yupSchema = object({
+  phone: string()
+    .required("Please enter your phone number")
+    .min(10, "Phone number should be 11 characters without country code")
+    .max(11, "Phone Number should not be more than 11 characters"),
+  password: string()
+    .required("Please enter a password")
+    .min(6, "Password must be minimum 6 characters or more"),
+});
+
+export default function CustomerLogin() {
+  const { handleChange, handleBlur, handleSubmit, values, errors } = useFormik({
+    initialValues: { phone: "", password: "" },
+    validationSchema: yupSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <View className="flex-1 justify-center px-6">
       <View className="flex">
@@ -21,24 +41,30 @@ export default function Login() {
           Customer Login
         </Text>
         <View className="flex gap-1">
-          <View>
-            <Text className="text-sm text-gray-600 font-medium mb-1">
-              Email
-            </Text>
-            <TextInput
-              className="px-4 py-2 border border-gray-300 focus:border-teal-700 w-full rounded-md text-sm"
-              placeholder="Enter Your Email"
-            />
-          </View>
-          <View>
-            <Text className="text-sm text-gray-600 font-medium mb-1">
-              Password
-            </Text>
-            <TextInput
-              className="px-4 py-2 border border-gray-300 focus:border-teal-700 w-full rounded-md text-sm"
-              placeholder="Enter Your Password"
-            />
-          </View>
+          {/* Email Field */}
+          <InputField
+            labelText="Phone"
+            placeholder="Ex: 017XXXXXXXX"
+            autoComplete="tel"
+            inputMode="tel"
+            keyboardType="phone-pad"
+            onBlur={handleBlur("phone")}
+            onChange={handleChange("phone")}
+            value={values.phone}
+          />
+          {errors.phone && <Text className="text-red-400">{errors.phone}</Text>}
+          {/* Password Field */}
+          <InputField
+            labelText="Password"
+            placeholder="Enter Your Password"
+            onBlur={handleBlur("password")}
+            onChange={handleChange("password")}
+            value={values.password}
+            secureTextEntry={true}
+          />
+          {errors.password && (
+            <Text className="text-red-400">{errors.password}</Text>
+          )}
           <Text className="text-teal-700 font-bold text-base text-right mt-2">
             Forgot Password?
           </Text>
@@ -47,7 +73,7 @@ export default function Login() {
           buttonLabel="Sign In"
           variant="teal"
           extraClassName="mt-6"
-          onPress={() => console.log("Login to customer")}
+          onPress={handleSubmit}
         />
         <View className="mt-10">
           <Text className="text-gray-800 text-sm text-center">

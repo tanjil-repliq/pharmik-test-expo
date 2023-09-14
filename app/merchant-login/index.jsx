@@ -1,10 +1,11 @@
+import { Image, Text, View } from "react-native";
 import { Link } from "expo-router";
-import { View, Text, Image } from "react-native";
-import PressableButton from "../../components/Shared/PressableButton";
-import InputField from "../../components/Shared/InputField";
-import { object, string } from "yup";
 
+import { object, string } from "yup";
 import { useFormik } from "formik";
+
+import InputField from "../../components/Shared/InputField";
+import PressableButton from "../../components/Shared/PressableButton";
 
 const yupSchema = object({
   phone: string()
@@ -17,16 +18,13 @@ const yupSchema = object({
 });
 
 export default function MerchantLogin() {
-  const { handleChange, handleBlur, handleSubmit, values, errors, isValid } =
-    useFormik({
-      initialValues: { phone: "", password: "" },
-      validationSchema: yupSchema,
-      onSubmit: (values) => {
-        console.log(values);
-      },
-    });
-
-  console.log("error occcurs", errors, isValid);
+  const { handleChange, handleBlur, handleSubmit, values, errors } = useFormik({
+    initialValues: { phone: "", password: "" },
+    validationSchema: yupSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <View className="flex-1 justify-center px-6">
@@ -47,8 +45,10 @@ export default function MerchantLogin() {
           {/* Email Field */}
           <InputField
             labelText="Phone"
-            placeholder="Enter Your Phone Number"
-            // autoComplete="email"
+            placeholder="Ex: 017XXXXXXXX"
+            autoComplete="tel"
+            inputMode="tel"
+            keyboardType="phone-pad"
             onBlur={handleBlur("phone")}
             onChange={handleChange("phone")}
             value={values.phone}
