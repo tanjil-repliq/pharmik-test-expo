@@ -6,12 +6,13 @@ import { useFormik } from "formik";
 
 import InputField from "../../components/Shared/InputField";
 import PressableButton from "../../components/Shared/PressableButton";
+import APIKit from "../../common/helpers/APIKit";
 
 const yupSchema = object({
   phone: string()
     .required("Please enter your phone number")
     .min(10, "Phone number should be 11 characters without country code")
-    .max(11, "Phone Number should not be more than 11 characters"),
+    .max(14, "Phone Number should not be more than 11 characters"),
   password: string()
     .required("Please enter a password")
     .min(6, "Password must be minimum 6 characters or more"),
@@ -22,11 +23,18 @@ export default function CustomerLogin() {
     initialValues: { phone: "", password: "" },
     validationSchema: yupSchema,
     onSubmit: (values) => {
+      const handleLogin = () => {
+        return APIKit.customer.auth
+          .login(values.phone, values.password)
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      };
       console.log(values);
+      handleLogin();
     },
   });
   return (
-    <View className="flex-1 justify-center px-6">
+    <View className="flex-1 justify-center px-6 bg-primary-bg">
       <View className="flex">
         <View className="flex-row items-center justify-center gap-2 mb-10">
           <Image
@@ -79,9 +87,12 @@ export default function CustomerLogin() {
           <Text className="text-gray-800 text-sm text-center">
             Don't Have an Account yet?
           </Text>
-          <Text className="text-teal-700 text-base font-semibold text-center mt-3">
+          <Link
+            href="/register"
+            className="text-teal-700 text-base font-semibold text-center mt-3"
+          >
             Create Account
-          </Text>
+          </Link>
         </View>
       </View>
     </View>

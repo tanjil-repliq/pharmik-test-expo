@@ -5,7 +5,7 @@ import PressableButton from "../../Shared/PressableButton";
 
 export default function Hero() {
   const image = {
-    uri: "https://i.ibb.co/mDJBhC8/hero-bg.png",
+    uri: "https://i.ibb.co/dtsGhTM/Microsoft-Teams-image.png",
   };
   return (
     <>

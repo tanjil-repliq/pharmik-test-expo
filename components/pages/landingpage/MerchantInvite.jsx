@@ -4,7 +4,7 @@ import PressableButton from "../../Shared/PressableButton";
 
 export default function MerchantInvite() {
   const image = {
-    uri: "https://i.ibb.co/mDJBhC8/hero-bg.png",
+    uri: "https://i.ibb.co/xqqVv35/Microsoft-Teams-image-2.png",
   };
   return (
     <View className="mt-10 px-4 ">
@@ -24,7 +24,7 @@ export default function MerchantInvite() {
           </Text>
           <PressableButton
             buttonLabel="Become Merchant"
-            extraClassName="w-60 mt-8 bg-white border-0 px-8 py-4"
+            extraClassName="w-60 mt-8 bg-white border-0 px-8 py-4 self-center"
             labelClassName="text-primary"
           />
         </View>

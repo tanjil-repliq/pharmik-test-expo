@@ -17,7 +17,7 @@ export default function TopNav() {
             Login
           </Link>
           <Link
-            href="/login"
+            href="/register"
             className="rounded-md bg-primary py-2 px-3 font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 text-base"
           >
             Sign Up
