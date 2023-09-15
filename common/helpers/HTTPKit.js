@@ -2,6 +2,7 @@ import axios from "axios";
 import { deferred } from "./Utilkit";
 import { AUTH_TOKEN_KEY } from "./KeyChain";
 import {AsyncStorage} from 'react-native';
+import {EXPO_PUBLIC_BASE_URL} from '@env'
 
 
 
@@ -17,7 +18,7 @@ const defaultErrors = {
 
 // TODO: Set baseURL via env variable or something
 export let client = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: EXPO_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
