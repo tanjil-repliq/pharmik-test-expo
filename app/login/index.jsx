@@ -34,7 +34,7 @@ export default function CustomerLogin() {
     },
   });
   return (
-    <View className="flex-1 justify-center px-6">
+    <View className="flex-1 justify-center px-6 bg-primary-bg">
       <View className="flex">
         <View className="flex-row items-center justify-center gap-2 mb-10">
           <Image
@@ -87,9 +87,12 @@ export default function CustomerLogin() {
           <Text className="text-gray-800 text-sm text-center">
             Don't Have an Account yet?
           </Text>
-          <Text className="text-teal-700 text-base font-semibold text-center mt-3">
+          <Link
+            href="/register"
+            className="text-teal-700 text-base font-semibold text-center mt-3"
+          >
             Create Account
-          </Text>
+          </Link>
         </View>
       </View>
     </View>
